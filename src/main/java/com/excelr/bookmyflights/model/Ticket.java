@@ -2,7 +2,12 @@ package com.excelr.bookmyflights.model;
 
 import java.util.UUID;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "tickets")
 public class Ticket {
+    @Id
     private UUID ticketId;
     private UUID flightId;
     private UUID passengerId;
