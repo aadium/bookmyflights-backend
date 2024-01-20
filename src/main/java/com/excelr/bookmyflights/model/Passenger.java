@@ -1,22 +1,18 @@
-package com.excelr.bookmyflights;
+package com.excelr.bookmyflights.model;
 
 import java.util.UUID;
 import org.springframework.data.annotation.Id;
 
-
 public class Passenger {
 	@Id
-	
-	private UUID id ;
-	
+	private UUID id;
+
 	private String name;
-	
+
 	private long number;
-	
+
 	private String address;
-	
-	
-	
+
 	public UUID getId() {
 		return id;
 	}
@@ -61,9 +57,4 @@ public class Passenger {
 		this.number = number;
 		this.address = address;
 	}
-	
-	
-	
-	
-	
 }
