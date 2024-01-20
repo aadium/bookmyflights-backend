@@ -3,6 +3,7 @@ package com.excelr.bookmyflights.model;
 import java.util.UUID;
 import org.springframework.data.annotation.Id;
 
+@Document (collection = "passengers")
 public class Passenger {
 	@Id
 	private UUID id;
