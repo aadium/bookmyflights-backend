@@ -2,16 +2,14 @@ package com.excelr.bookmyflights.model;
 
 import java.util.UUID;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document (collection = "passengers")
 public class Passenger {
 	@Id
 	private UUID id;
-
 	private String name;
-
 	private long number;
-
 	private String address;
 
 	public UUID getId() {
@@ -58,4 +56,15 @@ public class Passenger {
 		this.number = number;
 		this.address = address;
 	}
+
+	@Override
+	public String toString() {
+		return "{" +
+			" id='" + getId() + "'" +
+			", name='" + getName() + "'" +
+			", number='" + getNumber() + "'" +
+			", address='" + getAddress() + "'" +
+			"}";
+	}
+
 }
