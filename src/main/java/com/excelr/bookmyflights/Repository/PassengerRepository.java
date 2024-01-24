@@ -1,6 +1,6 @@
-package com.bookings.Repository;
+package com.excelr.bookmyflights.Repository;
 
-import com.bookings.Entity.Passenger;
+import com.excelr.bookmyflights.model.Passenger;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.UUID;
