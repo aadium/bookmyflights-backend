@@ -1,4 +1,4 @@
-package com.excler.bookmyflights.Service;
+package com.excelr.bookmyflights.Service;
 
 import java.util.List;
 
