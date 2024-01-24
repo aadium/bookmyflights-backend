@@ -1,4 +1,4 @@
-package com.excler.bookmyflights.Service;
+package com.excelr.bookmyflights.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
