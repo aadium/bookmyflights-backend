@@ -15,27 +15,17 @@ import com.excelr.bookmyflights.model.Flight;
 @RestController
 @RequestMapping("/flights")
 public class FlightController {
-
-	
-	
 	@Autowired
 	FlightService service;
-	
-	
+
 	@PostMapping("/saveFilght/{Id}")
-	public String saveFlight (@RequestBody Flight Id)
-	{
+	public String saveFlight(@RequestBody Flight Id) {
 		service.save(Id);
 		return "done";
 	}
-	
-	
+
 	@GetMapping("/getFlight")
-	public List<Flight> GetFlight(){
-		return service.getflight ();
+	public List<Flight> GetFlight() {
+		return service.getflight();
 	}
-	
-	
-	
-	
 }
