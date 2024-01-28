@@ -7,16 +7,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document (collection = "passengers")
 public class Passenger {
 	@Id
-	private UUID id;
+	private String id;
 	private String name;
 	private long number;
 	private String address;
 
-	public UUID getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -49,7 +49,7 @@ public class Passenger {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Passenger(UUID id, String name, long number, String address) {
+	public Passenger(String id, String name, long number, String address) {
 		super();
 		this.id = id;
 		this.name = name;
