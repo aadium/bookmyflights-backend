@@ -8,34 +8,34 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "tickets")
 public class Ticket {
     @Id
-    private UUID ticketId;
-    private UUID flightId;
-    private UUID passengerId;
+    private String ticketId;
+    private String flightId;
+    private String passengerId;
     private String seatClass; // Economy, Business, First
     private String seatNumber;
     private int checkedInBagsAmount; // Number of bags checked in
 
-    public UUID getTicketId() {
+    public String getTicketId() {
         return this.ticketId;
     }
 
-    public void setTicketId(UUID ticketId) {
+    public void setTicketId(String ticketId) {
         this.ticketId = ticketId;
     }
 
-    public UUID getFlightId() {
+    public String getFlightId() {
         return this.flightId;
     }
 
-    public void setFlightId(UUID flightId) {
+    public void setFlightId(String flightId) {
         this.flightId = flightId;
     }
 
-    public UUID getPassengerId() {
+    public String getPassengerId() {
         return this.passengerId;
     }
 
-    public void setPassengerId(UUID passengerId) {
+    public void setPassengerId(String passengerId) {
         this.passengerId = passengerId;
     }
 
@@ -66,7 +66,7 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(UUID ticketId, UUID flightId, UUID passengerId, String seatClass, String seatNumber, int checkedInBagsAmount) {
+    public Ticket(String ticketId, String flightId, String passengerId, String seatClass, String seatNumber, int checkedInBagsAmount) {
         this.ticketId = ticketId;
         this.flightId = flightId;
         this.passengerId = passengerId;
