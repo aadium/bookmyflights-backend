@@ -20,15 +20,20 @@ public class TicketController {
 	@Autowired
 	TicketService service;
 
-	@PostMapping("/saveTicket/{Id}")
+	@PostMapping("/saveTicket")
 	public String saveTicket(@RequestBody Ticket tk) {
 		service.save(tk);
 		return "done";
 	}
 
-	@GetMapping("/getTicket")
+	@GetMapping("/getTickets")
 	public List<Ticket> GetFlight() {
-		return service.getticket();
+		return service.gettickets();
+	}
+
+	@GetMapping("/getTicket/{Id}")
+	public Ticket GetFlightById(@RequestBody Ticket Id) {
+		return service.getticketById(Id);
 	}
 
 }

@@ -17,8 +17,11 @@ public class TicketService {
 		repo.save (t1);
 		return ("Flight Added with ID: "+t1.getTicketId());
 	}
-	public List<Ticket> getticket(){
+	public List<Ticket> gettickets(){
 		return repo.findAll();
+	}
+	public Ticket getticketById(Ticket id) {
+		return repo.findById(id.getTicketId()).orElse(null);
 	}
 
 }
