@@ -21,8 +21,8 @@ public class TicketController {
 	TicketService service;
 
 	@PostMapping("/saveTicket/{Id}")
-	public String saveTicket(@RequestBody Ticket Id) {
-		service.save(Id);
+	public String saveTicket(@RequestBody Ticket tk) {
+		service.save(tk);
 		return "done";
 	}
 
