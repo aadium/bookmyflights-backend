@@ -16,11 +16,18 @@ public class FlightService {
 	public String save (Flight f1) {
 		repo.save(f1);
 		return ("Flight Added with ID :"+f1.getFlightId());
-		
 	}
+
+	public Flight getflightById(Flight id) {
+		return repo.findById(id.getFlightId()).orElse(null);
+	}
+	
 	public List<Flight>getflight(){
 		return repo.findAll();
 	}
 	
-
+	public String delete(Flight f1) {
+		repo.delete(f1);
+		return "Flight Deleted with ID :"+f1.getFlightId();
+	}
 }
