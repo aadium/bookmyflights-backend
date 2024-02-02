@@ -11,7 +11,7 @@ import com.excelr.bookmyflights.Service.PassengerService;
 import com.excelr.bookmyflights.model.Passenger;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(maxAge = 3600)
 @RequestMapping("/passengers")
 public class PassengerController {
 

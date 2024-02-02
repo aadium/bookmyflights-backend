@@ -15,7 +15,7 @@ import com.excelr.bookmyflights.Service.TicketService;
 import com.excelr.bookmyflights.model.Ticket;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(maxAge = 3600)
 @RequestMapping("/tickets")
 public class TicketController {
 
