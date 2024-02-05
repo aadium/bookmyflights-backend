@@ -17,6 +17,8 @@ public class Flight {
     private int seatsAvailable;
     private String [] layovers;
     private String [] layoverDurations;
+    private String [] classes;
+    private double [] prices;
 
     public String getFlightId() {
         return this.flightId;
@@ -106,10 +108,26 @@ public class Flight {
         this.layoverDurations = layoverDurations;
     }
 
+    public String[] getClasses() {
+        return this.classes;
+    }
+
+    public void setClasses(String[] classes) {
+        this.classes = classes;
+    }
+
+    public double[] getPrices() {
+        return this.prices;
+    }
+
+    public void setPrices(double[] prices) {
+        this.prices = prices;
+    }
+
     public Flight() {
     }
 
-    public Flight(String flightId, String[] airlines, String[] flightNumbers, String[] flightDurations, String source, String destination, String departureTime, String arrivalTime, int seatsAvailable, String[] layovers, String[] layoverDurations) {
+    public Flight(String flightId, String[] airlines, String[] flightNumbers, String[] flightDurations, String source, String destination, String departureTime, String arrivalTime, int seatsAvailable, String[] layovers, String[] layoverDurations, String[] classes, double[] prices) {
         this.flightId = flightId;
         this.airlines = airlines;
         this.flightNumbers = flightNumbers;
@@ -121,6 +139,8 @@ public class Flight {
         this.seatsAvailable = seatsAvailable;
         this.layovers = layovers;
         this.layoverDurations = layoverDurations;
+        this.classes = classes;
+        this.prices = prices;
     }
 
     @Override
@@ -137,6 +157,8 @@ public class Flight {
             ", seatsAvailable='" + getSeatsAvailable() + "'" +
             ", layovers='" + getLayovers() + "'" +
             ", layoverDurations='" + getLayoverDurations() + "'" +
+            ", classes='" + getClasses() + "'" +
+            ", prices='" + getPrices() + "'" +
             "}";
     }
 }
