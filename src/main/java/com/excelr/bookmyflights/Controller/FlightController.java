@@ -22,7 +22,7 @@ import com.excelr.bookmyflights.model.Flight;
 public class FlightController {
 	@Autowired
 	FlightService service;
-	
+
 	@GetMapping("/getFlights")
 	public List<Flight> GetFlight() {
 		return service.getflight();
@@ -55,5 +55,15 @@ public class FlightController {
 	public String deleteFlight(@PathVariable Flight Id) {
 		service.delete(Id);
 		return "done";
+	}
+
+	@GetMapping("/getFlightsSource/{source}")
+	public List<Flight> findFlightsBySource(@PathVariable String source) {
+		return service.findFlightsBySource(source);
+	}
+
+	@GetMapping("/getFlightsSourceAndDestination/{source}/{destination}")
+	public List<Flight> getFlightsSourceAndDestination(@PathVariable String source, @PathVariable String destination) {
+		return service.findBySourceAndDestination(source, destination);
 	}
 }

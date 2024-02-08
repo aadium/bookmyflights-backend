@@ -9,27 +9,27 @@ import org.springframework.stereotype.Service;
 import com.excelr.bookmyflights.Repository.FlightRepository;
 import com.excelr.bookmyflights.model.Flight;
 
-@Service 
+@Service
 public class FlightService {
 	@Autowired
 	FlightRepository repo;
-	
-	public String save (Flight f1) {
+
+	public String save(Flight f1) {
 		repo.save(f1);
-		return ("Flight Added with ID :"+f1.getFlightId());
+		return ("Flight Added with ID :" + f1.getFlightId());
 	}
 
 	public Flight getflightById(Flight id) {
 		return repo.findById(id.getFlightId()).orElse(null);
 	}
-	
-	public List<Flight>getflight(){
+
+	public List<Flight> getflight() {
 		return repo.findAll();
 	}
-	
+
 	public String delete(Flight f1) {
 		repo.delete(f1);
-		return "Flight Deleted with ID :"+f1.getFlightId();
+		return "Flight Deleted with ID :" + f1.getFlightId();
 	}
 
 	public void decrementSeats(Flight f1) {
@@ -83,4 +83,13 @@ public class FlightService {
 			return "Flight not found with ID :" + f1.getFlightId();
 		}
 	}
+
+	public List<Flight> findFlightsBySource(String source) {
+		return repo.findBySource(source);
+	}
+
+	public List<Flight> findBySourceAndDestination(String source, String destination) {
+		return repo.findBySourceAndDestination(source, destination);
+	}
+
 }
