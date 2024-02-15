@@ -1,4 +1,4 @@
-package com.excelr.bookmyflights.Controller;
+package com.excelr.bookmyflights.controller;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.excelr.bookmyflights.Service.FlightService;
+import com.excelr.bookmyflights.service.FlightService;
 import com.excelr.bookmyflights.model.Flight;
 
 @RestController

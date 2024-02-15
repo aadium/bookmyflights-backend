@@ -1,4 +1,4 @@
-package com.excelr.bookmyflights.Service;
+package com.excelr.bookmyflights.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.excelr.bookmyflights.Repository.FlightRepository;
+import com.excelr.bookmyflights.repository.FlightRepository;
 import com.excelr.bookmyflights.model.Flight;
 
 @Service
