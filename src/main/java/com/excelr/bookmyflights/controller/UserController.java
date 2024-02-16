@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import com.excelr.bookmyflights.model.AuthRequest;
+import com.excelr.bookmyflights.model.AuthResponse;
 import com.excelr.bookmyflights.model.UserInfo;
 import com.excelr.bookmyflights.service.JwtService;
 import com.excelr.bookmyflights.service.UserInfoService; 
@@ -29,15 +30,10 @@ public class UserController {
     @GetMapping("/welcome") 
     public String welcome() { 
         return "Welcome this endpoint is not secure"; 
-    } 
-
-    @GetMapping("/hello") 
-    public String hello() { 
-        return "Hello I am under the water please help"; 
-    } 
+    }
   
-    @PostMapping("/addNewUser") 
-    public String addNewUser(@RequestBody UserInfo userInfo) { 
+    @PostMapping("/register") 
+    public UserInfo addNewUser(@RequestBody UserInfo userInfo) { 
         return service.addUser(userInfo); 
     } 
   
@@ -48,16 +44,19 @@ public class UserController {
     } 
   
     @GetMapping("/admin/adminProfile") 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')") 
+    @PreAuthorize("hasAuthority('ROLE_USER')") 
     public String adminProfile() { 
         return "Welcome to Admin Profile"; 
     } 
   
-    @PostMapping("/generateToken") 
-    public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) { 
+    @PostMapping("/login") 
+    public AuthResponse authenticateAndGetToken(@RequestBody AuthRequest authRequest) { 
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())); 
+        AuthResponse authResponse = new AuthResponse();
+        authResponse.setUsername(authRequest.getUsername());
         if (authentication.isAuthenticated()) { 
-            return jwtService.generateToken(authRequest.getUsername()); 
+            authResponse.setResponse(jwtService.generateToken(authRequest.getUsername()));
+            return authResponse; 
         } else { 
             throw new UsernameNotFoundException("invalid user request !"); 
         } 
