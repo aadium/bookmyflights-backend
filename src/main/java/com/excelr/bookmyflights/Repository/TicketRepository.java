@@ -1,4 +1,4 @@
-package com.excelr.bookmyflights.Repository;
+package com.excelr.bookmyflights.repository;
 
 import com.excelr.bookmyflights.model.Ticket;
 import org.springframework.data.mongodb.repository.MongoRepository;
