@@ -14,34 +14,52 @@ public class FlightService {
 	@Autowired
 	FlightRepository repo;
 
-	public String save(Flight f1) {
-		repo.save(f1);
-		return ("Flight Added with ID :" + f1.getFlightId());
+	public Flight save(Flight fl) {
+		repo.save(fl);
+		return fl;
 	}
 
-	public Flight getflightById(Flight id) {
-		return repo.findById(id.getFlightId()).orElse(null);
-	}
-
-	public List<Flight> getflight() {
-		return repo.findAll();
-	}
-
-	public String delete(Flight f1) {
-		repo.delete(f1);
-		return "Flight Deleted with ID :" + f1.getFlightId();
-	}
-
-	public void decrementSeats(Flight f1) {
-		Optional<Flight> flightOpt = repo.findById(f1.getFlightId());
+	public Flight getFlightById(String id) {
+		Optional<Flight> flightOpt = repo.findById(id);
 		if (flightOpt.isPresent()) {
-			Flight existingFlight = flightOpt.get();
-			existingFlight.setSeatsAvailable(existingFlight.getSeatsAvailable() - 1);
-			repo.save(existingFlight);
+			return flightOpt.get();
+		} else {
+			return null;
 		}
 	}
 
-	public String update(Flight f1) {
+	public List<Flight> getFlights() {
+		return repo.findAll();
+	}
+
+	public Flight delete(String id) {
+		Optional<Flight> flightOpt = repo.findById(id);
+		if (flightOpt.isPresent()) {
+			Flight flightToDelete = flightOpt.get();
+			repo.deleteById(id);
+			return flightToDelete;
+		} else {
+			return null;
+		}
+	}
+
+	public Flight decrementSeats(String id) {
+		Optional<Flight> flightOpt = repo.findById(id);
+		if (flightOpt.isPresent()) {
+			Flight flight = flightOpt.get();
+			if (flight.getSeatsAvailable() > 0) {
+				flight.setSeatsAvailable(flight.getSeatsAvailable() - 1);
+				repo.save(flight);
+				return flight;
+			} else {
+				return null;
+			}
+		} else {
+			return null;
+		}
+	}
+
+	public Flight update(Flight f1) {
 		Optional<Flight> flightOpt = repo.findById(f1.getFlightId());
 		if (flightOpt.isPresent()) {
 			Flight existingFlight = flightOpt.get();
@@ -78,9 +96,9 @@ public class FlightService {
 			}
 
 			repo.save(existingFlight);
-			return "Flight updated with ID :" + f1.getFlightId();
+			return repo.findById(f1.getFlightId()).orElse(null);
 		} else {
-			return "Flight not found with ID :" + f1.getFlightId();
+			return null;
 		}
 	}
 

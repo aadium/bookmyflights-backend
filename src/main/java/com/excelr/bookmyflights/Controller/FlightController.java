@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.excelr.bookmyflights.service.FlightService;
+import com.excelr.bookmyflights.exceptions.ResourceNotFoundException;
 import com.excelr.bookmyflights.model.Flight;
 
 @RestController
@@ -24,46 +24,65 @@ public class FlightController {
 	FlightService service;
 
 	@GetMapping("/getFlights")
-	@PreAuthorize("hasAuthority('admin')")
-	public List<Flight> GetFlight() {
-		return service.getflight();
+	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
+	public List<Flight> getFlights() {
+		return service.getFlights();
 	}
 
 	@GetMapping("/getFlight/{Id}")
-	public Flight GetFlightById(@PathVariable Flight Id) {
-		return service.getflightById(Id);
+	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
+	public Flight getFlightById(@PathVariable String id) {
+		Flight flight = service.getFlightById(id);
+		if (flight == null) {
+			throw new ResourceNotFoundException("Flight not found");
+		}
+		return flight;
 	}
 
 	@PostMapping("/saveFlight")
-	public String saveFlight(@RequestBody Flight fl) {
-		service.save(fl);
-		return "done";
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+	public Flight saveFlight(@RequestBody Flight fl) {
+		return service.save(fl);
 	}
 
 	@PutMapping("/decrementSeats/{Id}")
-	public String decrementSeats(@PathVariable Flight Id) {
-		service.decrementSeats(Id);
-		return "done";
+	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
+	public Flight decrementSeats(@PathVariable String id) {
+		Flight flight = service.decrementSeats(id);
+		if (flight == null) {
+			throw new ResourceNotFoundException("Flight not found");
+		}
+		return flight;
 	}
 
 	@PutMapping("/updateFlight")
-	public String updateFlight(@RequestBody Flight fl) {
-		service.save(fl);
-		return "done";
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+	public Flight updateFlight(@RequestBody Flight fl) {
+		Flight flight = service.save(fl);
+		if (flight == null) {
+			throw new ResourceNotFoundException("Flight not found");
+		}
+		return flight;
 	}
 
 	@DeleteMapping("/deleteFlight/{Id}")
-	public String deleteFlight(@PathVariable Flight Id) {
-		service.delete(Id);
-		return "done";
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+	public Flight deleteFlight(@PathVariable String id) {
+		Flight fl = service.delete(id);
+		if (fl == null) {
+			throw new ResourceNotFoundException("Flight not found");
+		}
+		return fl;
 	}
 
-	@GetMapping("/getFlightsSource/{source}")
+	@GetMapping("/getFlightsBySource/{source}")
+	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
 	public List<Flight> findFlightsBySource(@PathVariable String source) {
 		return service.findFlightsBySource(source);
 	}
 
-	@GetMapping("/getFlightsSourceAndDestination/{source}/{destination}")
+	@GetMapping("/getFlightsBySourceAndDestination/{source}/{destination}")
+	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
 	public List<Flight> getFlightsSourceAndDestination(@PathVariable String source, @PathVariable String destination) {
 		return service.findBySourceAndDestination(source, destination);
 	}

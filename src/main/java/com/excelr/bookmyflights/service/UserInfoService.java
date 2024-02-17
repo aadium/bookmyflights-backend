@@ -33,4 +33,8 @@ public class UserInfoService implements UserDetailsService {
         repository.save(userInfo);
         return userInfo;
     }
+
+    public UserInfo getUserByUsername(String username) {
+        return repository.findByName(username).orElse(null);
+    }
 }
