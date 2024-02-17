@@ -33,7 +33,7 @@ public class TicketController {
 		return service.getTickets();
 	}
 
-	@GetMapping("/getTicket/{Id}")
+	@GetMapping("/getTicket/{id}")
 	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
 	public Ticket GetTicketById(@RequestBody String id) {
 		Ticket tk = service.getTicketById(id);
@@ -43,7 +43,7 @@ public class TicketController {
 		return tk;
 	}
 
-	@GetMapping("/deleteTicket/{Id}")
+	@GetMapping("/deleteTicket/{id}")
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	public Ticket deleteTicket(@RequestBody String id) {
 		Ticket tk = service.deleteTicket(id);

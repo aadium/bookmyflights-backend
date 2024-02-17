@@ -29,7 +29,7 @@ public class FlightController {
 		return service.getFlights();
 	}
 
-	@GetMapping("/getFlight/{Id}")
+	@GetMapping("/getFlight/{id}")
 	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
 	public Flight getFlightById(@PathVariable String id) {
 		Flight flight = service.getFlightById(id);
@@ -45,7 +45,7 @@ public class FlightController {
 		return service.save(fl);
 	}
 
-	@PutMapping("/decrementSeats/{Id}")
+	@PutMapping("/decrementSeats/{id}")
 	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
 	public Flight decrementSeats(@PathVariable String id) {
 		Flight flight = service.decrementSeats(id);
@@ -65,7 +65,7 @@ public class FlightController {
 		return flight;
 	}
 
-	@DeleteMapping("/deleteFlight/{Id}")
+	@DeleteMapping("/deleteFlight/{id}")
 	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	public Flight deleteFlight(@PathVariable String id) {
 		Flight fl = service.delete(id);
