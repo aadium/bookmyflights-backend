@@ -24,13 +24,11 @@ public class FlightController {
 	FlightService service;
 
 	@GetMapping("/getFlights")
-	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
 	public List<Flight> getFlights() {
 		return service.getFlights();
 	}
 
 	@GetMapping("/getFlight/{id}")
-	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
 	public Flight getFlightById(@PathVariable String id) {
 		Flight flight = service.getFlightById(id);
 		if (flight == null) {

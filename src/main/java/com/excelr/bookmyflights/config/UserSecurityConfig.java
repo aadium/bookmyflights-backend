@@ -32,6 +32,7 @@ public class UserSecurityConfig extends SecurityConfigurerAdapter {
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeRequests()
                 .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/flights/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
