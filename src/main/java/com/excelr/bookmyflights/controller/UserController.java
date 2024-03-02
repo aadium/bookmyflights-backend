@@ -1,6 +1,7 @@
 package com.excelr.bookmyflights.controller;
 
-import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager; 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication; 
@@ -45,5 +46,11 @@ public class UserController {
         } else { 
             throw new UsernameNotFoundException("invalid user request !"); 
         } 
+    }
+
+    @GetMapping("/checkLogin")
+    @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
+    public String checkLogin() {
+        return "Welcome to BookMyFlights";
     }
 }
