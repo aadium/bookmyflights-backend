@@ -73,14 +73,7 @@ public class FlightController {
 		return fl;
 	}
 
-	@GetMapping("/getFlightsBySource/{source}")
-	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
-	public List<Flight> findFlightsBySource(@PathVariable String source) {
-		return service.findFlightsBySource(source);
-	}
-
 	@GetMapping("/getFlightsBySourceAndDestination/{source}/{destination}")
-	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
 	public List<Flight> getFlightsSourceAndDestination(@PathVariable String source, @PathVariable String destination) {
 		return service.findBySourceAndDestination(source, destination);
 	}

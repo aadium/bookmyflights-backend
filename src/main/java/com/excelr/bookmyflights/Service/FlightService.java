@@ -102,10 +102,6 @@ public class FlightService {
 		}
 	}
 
-	public List<Flight> findFlightsBySource(String source) {
-		return repo.findBySource(source);
-	}
-
 	public List<Flight> findBySourceAndDestination(String source, String destination) {
 		return repo.findBySourceAndDestination(source, destination);
 	}
