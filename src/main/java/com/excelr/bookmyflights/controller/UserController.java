@@ -6,6 +6,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication; 
 import org.springframework.security.core.userdetails.UsernameNotFoundException; 
+import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
 import com.excelr.bookmyflights.model.AuthRequest;
@@ -60,9 +61,13 @@ public class UserController {
         return "Welcome to BookMyFlights Admin";
     }
 
-    @GetMapping("/getUser/{username}")
+    @GetMapping("/getUser")
     @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
-    public UserInfo getUser(@PathVariable String username) {
+    public UserInfo getUser(@RequestBody String tokenJSON) {
+        JSONObject tokenObject = new JSONObject(tokenJSON);
+        String token = tokenObject.getString("token");
+        System.out.println("Token: " + token);
+        String username = jwtService.extractUsername(token);
         return service.getUserByUsername(username);
     }
 }
