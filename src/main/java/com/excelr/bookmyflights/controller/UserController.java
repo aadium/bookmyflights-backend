@@ -63,10 +63,7 @@ public class UserController {
 
     @GetMapping("/getUser")
     @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
-    public UserInfo getUser(@RequestHeader String tokenJSON) {
-        JSONObject tokenObject = new JSONObject(tokenJSON);
-        String token = tokenObject.getString("token");
-        System.out.println("Token: " + token);
+    public UserInfo getUser(@RequestHeader String token) {
         String username = jwtService.extractUsername(token);
         return service.getUserByUsername(username);
     }
