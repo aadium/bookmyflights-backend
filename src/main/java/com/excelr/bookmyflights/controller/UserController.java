@@ -63,7 +63,7 @@ public class UserController {
 
     @GetMapping("/getUser")
     @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
-    public UserInfo getUser(@RequestBody String tokenJSON) {
+    public UserInfo getUser(@RequestHeader String tokenJSON) {
         JSONObject tokenObject = new JSONObject(tokenJSON);
         String token = tokenObject.getString("token");
         System.out.println("Token: " + token);
