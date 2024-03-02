@@ -29,7 +29,7 @@ public class UserController {
 
     @PostMapping("/register") 
     public UserInfo addNewUser(@RequestBody UserInfo userInfo) { 
-        return service.addUser(userInfo); 
+        return service.addUser(userInfo);
     } 
 
     @PostMapping("/login") 
@@ -52,5 +52,17 @@ public class UserController {
     @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
     public String checkLogin() {
         return "Welcome to BookMyFlights";
+    }
+
+    @GetMapping("/checkAdmin")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public String checkAdmin() {
+        return "Welcome to BookMyFlights Admin";
+    }
+
+    @GetMapping("/getUser/{username}")
+    @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
+    public UserInfo getUser(@PathVariable String username) {
+        return service.getUserByUsername(username);
     }
 }
