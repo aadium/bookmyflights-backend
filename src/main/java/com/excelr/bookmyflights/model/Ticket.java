@@ -17,6 +17,9 @@ public class Ticket {
     private String ticketId;
     private String flightId;
     private String passengerId;
+    private String fullname;
+    private String email;
+    private String billingAddress;
     private String seatClass;
     private String seatNumber;
     private String price;
