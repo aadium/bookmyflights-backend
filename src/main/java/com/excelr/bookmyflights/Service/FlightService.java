@@ -59,6 +59,22 @@ public class FlightService {
 		}
 	}
 
+	public Flight incrementSeats(String id) {
+		Optional<Flight> flightOpt = repo.findById(id);
+		if (flightOpt.isPresent()) {
+			Flight flight = flightOpt.get();
+			if (flight.getSeatsAvailable() > 0) {
+				flight.setSeatsAvailable(flight.getSeatsAvailable() + 1);
+				repo.save(flight);
+				return flight;
+			} else {
+				return null;
+			}
+		} else {
+			return null;
+		}
+	}
+
 	public Flight update(Flight f1) {
 		Optional<Flight> flightOpt = repo.findById(f1.getFlightId());
 		if (flightOpt.isPresent()) {

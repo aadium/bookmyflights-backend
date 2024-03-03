@@ -53,6 +53,16 @@ public class FlightController {
 		return flight;
 	}
 
+	@PutMapping("/incrementSeats/{id}")
+	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
+	public Flight incrementSeats(@PathVariable String id) {
+		Flight flight = service.incrementSeats(id);
+		if (flight == null) {
+			throw new ResourceNotFoundException("Flight not found");
+		}
+		return flight;
+	}
+
 	@PutMapping("/updateFlight")
 	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	public Flight updateFlight(@RequestBody Flight fl) {
