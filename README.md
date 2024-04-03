@@ -1,9 +1,12 @@
 [![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/Codyl/react-toastmasters.svg?style=for-the-badge
-[contributors-url]: https://github.com/Codyl/react-toastmasters/graphs/contributors
+[contributors-shield]: https://img.shields.io/github/contributors/excelr-projs/bookmyflights-backend.svg?style=for-the-badge
+[contributors-url]: https://github.com/excelr-projs/bookmyflights-backend/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/excelr-projs/bookmyflights-backend.svg?style=for-the-badge
+[forks-url]: https://github.com/excelr-projs/bookmyflights-backend/network/members
 
 # Flight Booking System Backend
 
